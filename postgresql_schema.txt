@@ -1,0 +1,36 @@
+expense_tracker=# CREATE TABLE users (
+expense_tracker(#     user_id SERIAL PRIMARY KEY,
+expense_tracker(#     username VARCHAR(50) UNIQUE NOT NULL,
+expense_tracker(#     password VARCHAR(255) NOT NULL
+expense_tracker(# );
+CREATE TABLE
+expense_tracker=# CREATE TABLE accounts (
+expense_tracker(#     account_id SERIAL PRIMARY KEY,
+expense_tracker(#     user_id INT REFERENCES users(user_id),
+expense_tracker(#     account_name VARCHAR(50) NOT NULL,
+expense_tracker(#     balance NUMERIC DEFAULT 0
+expense_tracker(# );
+CREATE TABLE
+expense_tracker=# CREATE TABLE transactions (
+expense_tracker(#     transaction_id SERIAL PRIMARY KEY,
+expense_tracker(#     account_id INT REFERENCES accounts(account_id),
+expense_tracker(#     amount NUMERIC NOT NULL,
+expense_tracker(#     category VARCHAR(50),
+expense_tracker(#     description TEXT,
+expense_tracker(#     tags VARCHAR(50),
+expense_tracker(#     transaction_date DATE NOT NULL,
+expense_tracker(#     recurring BOOLEAN DEFAULT FALSE
+expense_tracker(# );
+CREATE TABLE
+expense_tracker=# CREATE TABLE budgets (
+expense_tracker(#     budget_id SERIAL PRIMARY KEY,
+expense_tracker(#     user_id INT REFERENCES users(user_id),
+expense_tracker(#     category VARCHAR(50),
+expense_tracker(#     limit_amount NUMERIC
+expense_tracker(# );
+CREATE TABLE
+
+--- ADDED ---(Error:  there is no unique or exclusion constraint matching the ON CONFLICT specification)
+expense_tracker=# ALTER TABLE budgets
+expense_tracker-# ADD CONSTRAINT unique_user_category UNIQUE (user_id, category);
+ALTER TABLE
